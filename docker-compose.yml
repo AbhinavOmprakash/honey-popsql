@@ -1,0 +1,20 @@
+version: "3"
+services:
+  db:
+    image: postgres:13.3
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+      PG_COLOR: always
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./docker:/docker-entrypoint-initdb.d/
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 128M
